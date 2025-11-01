@@ -4,94 +4,223 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IrisWest156 | Developer Portfolio</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0f0f0f;
-      color: #f1f1f1;
+    :root {
+      --accent: #00bcd4;
+      --bg-dark: #0f0f0f;
+      --bg-mid: #1a1a1a;
+      --bg-light: #292929;
+      --text-light: #f1f1f1;
+      --text-muted: #aaa;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
     header {
       text-align: center;
-      padding: 2rem 1rem;
-      background: linear-gradient(90deg, #1e1e1e, #292929);
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, var(--bg-light), var(--bg-mid));
+      box-shadow: 0 2px 10px rgba(0, 188, 212, 0.1);
     }
+
     header img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
-      border: 3px solid #00bcd4;
+      border: 3px solid var(--accent);
+      transition: transform 0.3s ease;
     }
+
+    header img:hover {
+      transform: scale(1.05);
+    }
+
     h1 {
       margin-top: 1rem;
-      font-size: 2rem;
-      color: #00bcd4;
+      font-size: 2.2rem;
+      color: var(--accent);
+      letter-spacing: 1px;
     }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
     section {
-      padding: 2rem;
-      max-width: 1000px;
+      padding: 3rem 1rem;
+      max-width: 1100px;
       margin: auto;
     }
+
     h2 {
-      color: #00bcd4;
-      border-bottom: 2px solid #00bcd4;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
       padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
+
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
     }
+
     .project {
-      background: #1a1a1a;
-      border-radius: 12px;
-      padding: 1rem;
+      background: var(--bg-mid);
+      border-radius: 14px;
+      padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
-      transition: transform 0.2s;
+      box-shadow: 0 0 15px rgba(0, 188, 212, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .project:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      box-shadow: 0 0 25px rgba(0, 188, 212, 0.25);
     }
+
     .project img {
       width: 100%;
-      border-radius: 8px;
-      margin-bottom: 0.8rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      transition: opacity 0.3s ease;
     }
+
+    .project img:hover {
+      opacity: 0.9;
+    }
+
+    .project h3 {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    .project p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
     .project a {
+      color: var(--accent);
       text-decoration: none;
-      color: #00bcd4;
       font-weight: 600;
+      transition: color 0.3s ease;
     }
+
+    .project a:hover {
+      color: #4deaff;
+    }
+
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
       background: #111;
       color: #777;
       font-size: 0.9rem;
-      margin-top: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      header img {
+        width: 100px;
+        height: 100px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-F2254AB2A99F8B9BFC1D64F8600D1216-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="IrisWest156 Roblox Avatar">
     <h1>IrisWest156</h1>
-    <p>Roblox Developer | Discord Bot Developer | Web Developer</p>
+    <p>Roblox Developer • Discord Bot Developer • Web Developer</p>
   </header>
 
   <section id="roblox">
     <h2>Roblox Development</h2>
     <div class="project-grid">
       <div class="project">
-        <a href="https://www.roblox.com/groups/0000000/Example-Group" target="_blank">
-          <img src="https://example.com/game-image1.png" alt="Example Roblox Game">
+        <a href="https://www.roblox.com/communities/5989081/The-Jedi-Order#!/about" target="_blank">
+          <img src="https://tr.rbxcdn.com/180DAY-b12a68e292c39060a64f457d7b048de1/150/150/Image/Webp/noFilter" alt="Roblox Game">
         </a>
-        <h3>Example Group Name</h3>
-        <p>Role: Lead Scripter</p>
+        <h3>|>The Jedi Order<|</h3>
+        <p>Role: Ex Head Developer</p>
+      </div>
+
+      <div class="project">
+        <a href="https://www.roblox.com/communities/11668364/The-New-Jedi-Order#!/about" target="_blank">
+          <img src="https://tr.rbxcdn.com/180DAY-5f09592d0a78cce35916401e3968467a/150/150/Image/Webp/noFilter" alt="Roblox Game">
+        </a>
+        <h3>》The New Jedi Order《</h3>
+        <p>Role: Ex Developer</p>
+      </div>
+
+      <div class="project">
+        <a href="https://www.roblox.com/communities/33763973/AJO-The-Ancient-Jedi-Order#!/about" target="_blank">
+          <img src="https://tr.rbxcdn.com/180DAY-9a39f10ae1dd86ae29d61f77ed04de9e/150/150/Image/Webp/noFilter" alt="Roblox Game">
+        </a>
+        <h3>AJO | The Ancient Jedi Order</h3>
+        <p>Role: Ex Developer</p>
+      </div>
+
+      <div class="project">
+        <a href="https://www.roblox.com/communities/34433644/The-Jedi-Order-on-Alderaan#!/about" target="_blank">
+          <img src="https://tr.rbxcdn.com/180DAY-9f0130856aff407bf1ef5b3ad82fe5b8/150/150/Image/Webp/noFilter" alt="Roblox Game">
+        </a>
+        <h3>The Jedi Order on Alderaan</h3>
+        <p>Role: Ex Head Developer</p>
+      </div>
+
+      <div class="project">
+        <a href="https://www.roblox.com/communities/35340042/Star-Wars-The-forgotten-Galaxy#!/about" target="_blank">
+          <img src="https://tr.rbxcdn.com/180DAY-d4cbcf53fffa2fca980ce8a69eff11e9/150/150/Image/Webp/noFilter" alt="Roblox Game">
+        </a>
+        <h3>Star Wars: The forgotten Galaxy</h3>
+        <p>Role: Ex Developer</p>
+      </div>
+
+      <div class="project">
+        <a href="https://www.roblox.com/communities/34873261/Maccies-Restaurant-Roleplay#!/about" target="_blank">
+          <img src="https://tr.rbxcdn.com/180DAY-812cb85f9739cd1e9089e3c7c4fb645d/150/150/Image/Webp/noFilter" alt="Roblox Game">
+        </a>
+        <h3>Maccies Restaurant Roleplay</h3>
+        <p>Role: Ex Head Developer</p>
+      </div>
+      
+      <div class="project">
+        <a href="https://www.roblox.com/communities/32438991/SCP-Foundation#!/about" target="_blank">
+          <img src="https://tr.rbxcdn.com/180DAY-f5adf117352003853b7b04d47c9c9dab/150/150/Image/Webp/noFilter" alt="Roblox Game">
+        </a>
+        <h3>〈 SCP Foundation 〉</h3>
+        <p>Role: Ex Developer</p>
       </div>
     </div>
   </section>
@@ -100,9 +229,9 @@
     <h2>Discord Bot Projects</h2>
     <div class="project-grid">
       <div class="project">
-        <img src="https://example.com/bot-icon.png" alt="Bot Icon">
-        <h3>ExampleBot</h3>
-        <p>Custom moderation, music, and economy bot built using Discord.js and Wavelink.</p>
+        <img src="https://cdn.discordapp.com/avatars/1407072138619387946/717d8b9b6c93019d48ba1fbad4fd4c19" alt="Bot Icon">
+        <h3>Nuke Protection Pro</h3>
+        <p>Role: Creator</p>
       </div>
     </div>
   </section>
@@ -112,14 +241,14 @@
     <div class="project-grid">
       <div class="project">
         <img src="https://example.com/website-preview.png" alt="Website Preview">
-        <h3>Example Portfolio Site</h3>
-        <p>Built fully from scratch using HTML, CSS, and JavaScript.</p>
+        <h3>Portfolio</h3>
+        <p>Built fully from scratch.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    © 2025 IrisWest156 | All Rights Reserved
+    © 2025 IrisWest156 • All Rights Reserved
   </footer>
 </body>
 </html>
