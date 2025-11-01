@@ -1,322 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IrisWest156 | Developer Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IrisWest156 | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --neon-cyan: #00eaff;
-      --neon-pink: #ff00d4;
-      --neon-purple: #7a00ff;
-      --dark-bg: #0a0a0f;
-      --card-bg: rgba(255, 255, 255, 0.06);
-      --text-light: #f5f5f5;
-      --text-muted: #aaa;
-      --glass-border: rgba(255, 255, 255, 0.15);
+      --bg: #050510;
+      --panel: rgba(255, 255, 255, 0.04);
+      --neon-cyan: #00ffff;
+      --neon-purple: #c400ff;
+      --text: #f8f8ff;
+      --muted: #999;
+      --accent: #00e5ff;
     }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+
     body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at 20% 30%, #111 0%, #000 100%);
-      color: var(--text-light);
+      display: flex;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 20% 20%, #0a0a18, #000);
+      color: var(--text);
       overflow-x: hidden;
+      min-height: 100vh;
     }
-    header {
-      position: relative;
+
+    /* SIDEBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 230px;
+      background: rgba(10, 10, 25, 0.8);
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      z-index: 10;
+    }
+
+    nav .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--neon-cyan);
+      margin-bottom: 1rem;
+      box-shadow: 0 0 25px var(--neon-cyan);
+      transition: transform 0.4s ease;
+    }
+
+    nav .avatar:hover {
+      transform: scale(1.05);
+    }
+
+    nav h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
       text-align: center;
-      padding: 4rem 1rem 3rem;
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-      background-clip: text;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    header img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 4px solid var(--neon-cyan);
-      box-shadow: 0 0 30px rgba(0, 238, 255, 0.5);
-      transition: transform 0.4s ease;
-    }
-    header img:hover {
-      transform: scale(1.08) rotate(3deg);
-    }
-    h1 {
-      margin-top: 1rem;
-      font-size: 2.6rem;
-      letter-spacing: 1px;
-    }
-    header p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-top: 0.3rem;
-    }
-    nav {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(10px);
-      background: rgba(0, 0, 0, 0.5);
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 0.8rem 1rem;
-      z-index: 10;
-    }
+
     nav a {
-      color: var(--text-light);
       text-decoration: none;
+      color: var(--text);
+      margin: 0.6rem 0;
       font-weight: 600;
-      transition: color 0.3s ease;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
     }
+
     nav a:hover {
       color: var(--neon-cyan);
     }
-    section {
-      padding: 4rem 1rem;
-      max-width: 1200px;
-      margin: auto;
+
+    /* MAIN CONTENT */
+    main {
+      margin-left: 230px;
+      padding: 3rem 2rem;
+      width: 100%;
     }
+
+    section {
+      margin-bottom: 6rem;
+    }
+
     h2 {
+      font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
-      margin-bottom: 2rem;
       text-align: center;
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
-      background-clip: text;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-weight: 700;
     }
-    .project-grid {
+
+    /* HERO SECTION */
+    #hero {
+      text-align: center;
+      margin-top: 2rem;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    #hero h3 {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    #hero p {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    /* PROJECTS GRID */
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-      padding-top: 1rem;
     }
-    .project {
-      background: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 18px;
+
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
       padding: 1.5rem;
       text-align: center;
       backdrop-filter: blur(12px);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
     }
-    .project:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 0 25px rgba(0, 238, 255, 0.2);
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
     }
-    .project img {
+
+    .card img {
       width: 100%;
-      border-radius: 14px;
+      border-radius: 12px;
       margin-bottom: 1rem;
-      transition: transform 0.4s ease;
     }
-    .project img:hover {
-      transform: scale(1.05);
-    }
-    .project h3 {
-      color: var(--neon-cyan);
+
+    .card h3 {
+      color: var(--accent);
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
     }
-    .project p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
     }
-    #featured .featured-project {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .featured-project h3 {
-      color: var(--neon-pink);
-      font-size: 1.6rem;
-      margin-bottom: 0.6rem;
-    }
-    .featured-project p {
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-    }
-    .video-wrapper {
+
+    /* FEATURED */
+    .video-frame {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
-      border-radius: 14px;
-      box-shadow: 0 0 25px rgba(255, 0, 200, 0.3);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(200, 0, 255, 0.3);
     }
-    .video-wrapper iframe {
+
+    .video-frame iframe {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
+      top: 0;
+      left: 0;
       border: none;
     }
-    .image-gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    .image-gallery img {
-      width: 300px;
-      border-radius: 14px;
-      box-shadow: 0 0 20px rgba(0, 238, 255, 0.2);
-      transition: transform 0.4s ease;
-    }
-    .image-gallery img:hover {
-      transform: scale(1.05);
-    }
+
+    /* FOOTER */
     footer {
       text-align: center;
-      padding: 2rem;
-      color: var(--text-muted);
       font-size: 0.9rem;
-      background: linear-gradient(135deg, #0b0b10, #000);
-      border-top: 1px solid var(--glass-border);
+      color: var(--muted);
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
+
+    /* ANIMATIONS */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease-out;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    @media (max-width: 600px) {
-      header img {
-        width: 100px;
-        height: 100px;
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        position: fixed;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      h1 {
-        font-size: 2rem;
+
+      main {
+        margin-left: 0;
+        padding-top: 7rem;
+      }
+
+      nav h1 {
+        display: none;
+      }
+
+      nav .avatar {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-F2254AB2A99F8B9BFC1D64F8600D1216-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="IrisWest156 Avatar">
-    <h1>IrisWest156</h1>
-    <p>Roblox Developer • Discord Bot Developer • Web Developer</p>
-  </header>
   <nav>
+    <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-F2254AB2A99F8B9BFC1D64F8600D1216-Png/150/150/AvatarHeadshot/Webp/noFilter" class="avatar" alt="Avatar">
+    <h1>IrisWest156</h1>
+    <a href="#hero">About</a>
     <a href="#roblox">Roblox</a>
     <a href="#featured">Featured</a>
-    <a href="#websites">Websites</a>
+    <a href="#web">Web</a>
   </nav>
-  <section id="roblox" class="reveal">
-    <h2>Roblox Development</h2>
-    <div class="project-grid">
-      <div class="project">
-        <a href="https://www.roblox.com/communities/5989081/The-Jedi-Order#!/about" target="_blank">
+
+  <main>
+    <section id="hero" class="reveal">
+      <h2>Welcome, Traveler.</h2>
+      <h3>Roblox • Discord Bot • Web Developer</h3>
+      <p>I'm IrisWest156 — a developer obsessed with building digital worlds, sleek systems, and futuristic designs. I turn imagination into interactive reality through scripting, UI, and creative code.</p>
+    </section>
+
+    <section id="roblox" class="reveal">
+      <h2>Roblox Projects</h2>
+      <div class="grid">
+        <div class="card">
           <img src="https://tr.rbxcdn.com/180DAY-b12a68e292c39060a64f457d7b048de1/150/150/Image/Webp/noFilter" alt="The Jedi Order">
-        </a>
-        <h3>|> The Jedi Order <|</h3>
-        <p>Role: Former Head Developer</p>
+          <h3>The Jedi Order</h3>
+          <p>Former Head Developer</p>
+        </div>
+        <div class="card">
+          <img src="https://tr.rbxcdn.com/180DAY-5f09592d0a78cce35916401e3968467a/150/150/Image/Webp/noFilter" alt="New Jedi Order">
+          <h3>The New Jedi Order</h3>
+          <p>Former Developer</p>
+        </div>
+        <div class="card">
+          <img src="https://tr.rbxcdn.com/180DAY-812cb85f9739cd1e9089e3c7c4fb645d/150/150/Image/Webp/noFilter" alt="Maccies Restaurant">
+          <h3>Maccies Restaurant Roleplay</h3>
+          <p>Former Head Developer</p>
+        </div>
       </div>
-      <div class="project">
-        <a href="https://www.roblox.com/communities/11668364/The-New-Jedi-Order#!/about" target="_blank">
-          <img src="https://tr.rbxcdn.com/180DAY-5f09592d0a78cce35916401e3968467a/150/150/Image/Webp/noFilter" alt="The New Jedi Order">
-        </a>
-        <h3>》The New Jedi Order《</h3>
-        <p>Role: Former Developer</p>
-      </div>
-      <div class="project">
-        <a href="https://www.roblox.com/communities/33763973/AJO-The-Ancient-Jedi-Order#!/about" target="_blank">
-          <img src="https://tr.rbxcdn.com/180DAY-9a39f10ae1dd86ae29d61f77ed04de9e/150/150/Image/Webp/noFilter" alt="AJO">
-        </a>
-        <h3>AJO | The Ancient Jedi Order</h3>
-        <p>Role: Former Developer</p>
-      </div>
-      <div class="project">
-        <a href="https://www.roblox.com/communities/34433644/The-Jedi-Order-on-Alderaan#!/about" target="_blank">
-          <img src="https://tr.rbxcdn.com/180DAY-9f0130856aff407bf1ef5b3ad82fe5b8/150/150/Image/Webp/noFilter" alt="The Jedi Order on Alderaan">
-        </a>
-        <h3>The Jedi Order on Alderaan</h3>
-        <p>Role: Former Head Developer</p>
-      </div>
-      <div class="project">
-        <a href="https://www.roblox.com/communities/35340042/Star-Wars-The-forgotten-Galaxy#!/about" target="_blank">
-          <img src="https://tr.rbxcdn.com/180DAY-d4cbcf53fffa2fca980ce8a69eff11e9/150/150/Image/Webp/noFilter" alt="Star Wars: The Forgotten Galaxy">
-        </a>
-        <h3>Star Wars: The Forgotten Galaxy</h3>
-        <p>Role: Former Developer</p>
-      </div>
-      <div class="project">
-        <a href="https://www.roblox.com/communities/34873261/Maccies-Restaurant-Roleplay#!/about" target="_blank">
-          <img src="https://tr.rbxcdn.com/180DAY-812cb85f9739cd1e9089e3c7c4fb645d/150/150/Image/Webp/noFilter" alt="Maccies Restaurant Roleplay">
-        </a>
-        <h3>Maccies Restaurant Roleplay</h3>
-        <p>Role: Former Head Developer</p>
-      </div>
-      <div class="project">
-        <a href="https://www.roblox.com/communities/32438991/SCP-Foundation#!/about" target="_blank">
-          <img src="https://tr.rbxcdn.com/180DAY-f5adf117352003853b7b04d47c9c9dab/150/150/Image/Webp/noFilter" alt="SCP Foundation">
-        </a>
-        <h3>〈 SCP Foundation 〉</h3>
-        <p>Role: Former Developer</p>
-      </div>
-    </div>
-  </section>
-  <section id="featured" class="reveal">
-    <h2>Featured Projects</h2>
-    <div class="featured-project">
-      <h3>AFK System</h3>
-      <p>Advanced AFK system (works instantly).</p>
-      <div class="video-wrapper">
+    </section>
+
+    <section id="featured" class="reveal">
+      <h2>Featured Work</h2>
+      <div class="video-frame">
         <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
       </div>
-    </div>
-    <div class="featured-project">
-      <h3>Overhead UI</h3>
-      <p>An good working overhead UI.</p>
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    </section>
+
+    <section id="web" class="reveal">
+      <h2>Web Development</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://example.com/portfolio-preview.png" alt="Portfolio Preview">
+          <h3>Developer Portfolio</h3>
+          <p>Designed and coded from the ground up, with modern UI and dynamic layout.</p>
+        </div>
       </div>
-    </div>
-    <div class="featured-project">
-      <h3>Loggers</h3>
-      <p>Admin and Activity Loggers.</p>
-      <div class="image-gallery">
-        <img src="https://i.ibb.co/H8ftwBp/logger1.png" alt="Admin Logger">
-        <img src="https://i.ibb.co/qYxYDgq1/logger2.png" alt="Activity Logger">
-      </div>
-    </div>
-  </section>
-  <section id="websites" class="reveal">
-    <h2>Web Projects</h2>
-    <div class="project-grid">
-      <div class="project">
-        <img src="https://example.com/website-preview.png" alt="Developer Portfolio Preview">
-        <h3>Developer Portfolio</h3>
-        <p>Designed and built entirely from scratch.</p>
-      </div>
-    </div>
-  </section>
-  <footer>
-    © 2025 IrisWest156 • All Rights Reserved
-  </footer>
+    </section>
+
+    <footer>© 2025 IrisWest156 • Coded with Passion and Neon ⚡</footer>
+  </main>
+
   <script>
     const reveals = document.querySelectorAll('.reveal');
     window.addEventListener('scroll', () => {
-      reveals.forEach(el => {
+      for (const el of reveals) {
         const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) el.classList.add('visible');
-      });
+        if (top < window.innerHeight - 80) el.classList.add('visible');
+      }
     });
   </script>
 </body>
