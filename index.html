@@ -7,15 +7,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
     :root {
-      --bg: #0f1117;
-      --surface: #181b23;
+      --bg: #0e1117;
+      --surface: #1a1d26;
       --accent: #3b82f6;
       --text: #e5e7eb;
       --muted: #9ca3af;
     }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -26,7 +24,6 @@
       min-height: 100vh;
       padding: 20px;
     }
-
     .wrapper {
       background: var(--surface);
       border-radius: 16px;
@@ -34,126 +31,49 @@
       padding: 40px;
       max-width: 850px;
       width: 100%;
-      animation: fadeIn 0.5s ease;
+      animation: fadeIn .5s ease;
     }
-
     h1 {
       text-align: center;
       font-weight: 600;
       font-size: 2rem;
-      color: var(--text);
       margin-bottom: 2rem;
     }
-
-    textarea {
-      width: 100%;
-      height: 280px;
-      resize: none;
-      background: #1f232c;
-      color: var(--text);
-      border: 1px solid #2d323e;
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 0.95rem;
-      transition: border 0.3s ease;
-    }
-
-    textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    select, input {
+    textarea, select, input {
       width: 100%;
       background: #1f232c;
       color: var(--text);
       border: 1px solid #2d323e;
       border-radius: 10px;
       padding: 10px;
-      font-size: 0.95rem;
-      transition: border 0.3s ease;
+      font-size: .95rem;
+      transition: border .3s ease;
     }
-
-    select:focus, input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .controls {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
+    textarea:focus, select:focus, input:focus { outline: none; border-color: var(--accent); }
+    textarea { height: 260px; resize: none; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .controls { display: flex; gap: 10px; margin-bottom: 20px; }
     button {
-      width: 100%;
-      background: var(--accent);
-      border: none;
-      color: white;
-      font-weight: 600;
-      padding: 12px;
-      border-radius: 10px;
-      transition: background 0.3s ease, transform 0.1s ease;
+      width: 100%; background: var(--accent); border: none; color: #fff;
+      font-weight: 600; padding: 12px; border-radius: 10px;
+      transition: background .3s ease, transform .1s ease;
     }
-
-    button:hover {
-      background: #2563eb;
-      transform: scale(1.02);
-    }
-
-    #results {
-      margin-top: 2rem;
-      display: grid;
-      gap: 15px;
-    }
-
+    button:hover { background: #2563eb; transform: scale(1.02); }
+    #results { margin-top: 2rem; display: grid; gap: 15px; }
     .group {
       background: #1f232c;
       border-left: 4px solid var(--accent);
       padding: 15px;
       border-radius: 10px;
-      animation: fadeInUp 0.4s ease;
+      animation: fadeInUp .4s ease;
     }
-
-    .group-title {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-
-    .error {
-      color: #f87171;
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-      textarea {
-        height: 200px;
-      }
-    }
+    .group-title { color: var(--accent); font-weight: 600; margin-bottom: 5px; }
+    .error { color: #f87171; text-align: center; margin-top: 1rem; }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+    @keyframes fadeInUp { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+    @media (max-width:768px){ .grid{grid-template-columns:1fr;} textarea{height:200px;} }
   </style>
 </head>
-
 <body>
   <div class="wrapper">
     <h1>Groepenmaker</h1>
@@ -201,70 +121,68 @@
         return;
       }
 
-      const lowerNames = names.map(n => n.toLowerCase());
-      const hasTristan = lowerNames.includes('tristan');
-      const hasLily = lowerNames.includes('lily');
-
-      let mainList = [...names];
-      let fixedPair = [];
+      const lower = names.map(n => n.toLowerCase());
+      const hasTristan = lower.includes('tristan');
+      const hasLily = lower.includes('lily');
+      let list = [...names];
+      let pair = [];
 
       if (hasTristan && hasLily) {
-        mainList = mainList.filter(n => !['tristan', 'lily'].includes(n.toLowerCase()));
-        fixedPair = ['Tristan', 'Lily'];
+        list = list.filter(n => !['tristan','lily'].includes(n.toLowerCase()));
+        pair = ['Tristan','Lily'];
       }
 
-      shuffle(mainList);
-      if (fixedPair.length) {
-        const insertIndex = Math.floor(Math.random() * (mainList.length + 1));
-        mainList.splice(insertIndex, 0, fixedPair);
+      shuffle(list);
+      if (pair.length) {
+        const idx = Math.floor(Math.random() * (list.length + 1));
+        list.splice(idx, 0, pair);
       }
 
       let groups = [];
 
       if (mode === 'people') {
         let temp = [];
-        for (let i = 0; i < mainList.length; i++) {
-          const current = mainList[i];
-          if (Array.isArray(current)) {
-            if (temp.length + 2 > quantity) {
-              groups.push([...temp]);
-              temp = [];
-            }
-            temp.push(...current);
-          } else {
-            temp.push(current);
-          }
-
-          if (temp.length === quantity) {
+        for (let i = 0; i < list.length; i++) {
+          const cur = list[i];
+          const size = Array.isArray(cur) ? 2 : 1;
+          if (temp.length + size > quantity) {
             groups.push([...temp]);
             temp = [];
           }
+          if (Array.isArray(cur)) temp.push(...cur);
+          else temp.push(cur);
         }
         if (temp.length) groups.push(temp);
       } else {
-        const groupCount = quantity;
-        groups = Array.from({ length: groupCount }, () => []);
-        let groupIndex = 0;
-
-        for (let i = 0; i < mainList.length; i++) {
-          const item = mainList[i];
-          if (Array.isArray(item)) {
-            if (groups[groupIndex].length + 2 > Math.ceil(names.length / groupCount)) {
-              groupIndex = (groupIndex + 1) % groupCount;
-            }
-            groups[groupIndex].push(...item);
+        const count = quantity;
+        groups = Array.from({length: count}, () => []);
+        let idx = 0;
+        for (let i = 0; i < list.length; i++) {
+          const cur = list[i];
+          if (Array.isArray(cur)) {
+            if (groups[idx].length + 2 > Math.ceil(names.length / count)) idx = (idx + 1) % count;
+            groups[idx].push(...cur);
           } else {
-            groups[groupIndex].push(item);
+            groups[idx].push(cur);
           }
-          groupIndex = (groupIndex + 1) % groupCount;
+          idx = (idx + 1) % count;
         }
       }
 
-      groups.forEach((group, i) => {
-        const div = document.createElement('div');
-        div.className = 'group';
-        div.innerHTML = `<div class="group-title">Groep ${i + 1}</div>${group.join(', ')}`;
-        results.appendChild(div);
+      if (groups.some(g => g.length === 1) && groups.length > 1) {
+        const singles = groups.filter(g => g.length === 1);
+        if (singles.length) {
+          const single = singles[0][0];
+          groups = groups.filter(g => g.length !== 1);
+          groups[groups.length - 1].push(single);
+        }
+      }
+
+      groups.forEach((g,i)=>{
+        const d=document.createElement('div');
+        d.className='group';
+        d.innerHTML=`<div class="group-title">Groep ${i+1}</div>${g.join(', ')}`;
+        results.appendChild(d);
       });
     }
   </script>
