@@ -1,170 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Groepenmaker</title>
-  
-  <!-- Bootstrap 5 -->
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
-  
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
     body {
-      background: linear-gradient(135deg, #74ABE2, #5563DE);
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .navbar {
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    main {
-      flex: 1;
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fb;
+      color: #222;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
+      min-height: 100vh;
+      padding: 20px;
     }
 
-    .card {
+    .wrapper {
       background: #fff;
-      color: #333;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      padding: 40px;
       max-width: 900px;
       width: 100%;
     }
 
-    textarea {
-      width: 100%;
-      min-height: 250px;
-      border-radius: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      resize: vertical;
+    h1 {
+      font-weight: 600;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
-    #results .group {
-      background: #f8f9fa;
-      border-left: 5px solid #5563DE;
+    .input-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 300px;
+      resize: none;
       border-radius: 8px;
+      border: 1px solid #ccc;
       padding: 10px;
-      margin-bottom: 10px;
-      animation: fadeIn 0.5s ease;
+      font-size: 0.95rem;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #2b6cb0;
+      color: #fff;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #245a96;
+    }
+
+    #results {
+      margin-top: 2rem;
+      display: grid;
+      gap: 15px;
+    }
+
+    .group {
+      background: #f1f3f9;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #2b6cb0;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .group-title {
+      font-weight: 600;
+      margin-bottom: 5px;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
-    footer {
-      background: #fff;
-      padding: 0.5rem 0;
-      text-align: right;
-    }
-
-    footer a {
-      color: #000;
-      margin-right: 1rem;
-      text-decoration: none;
+    @media (max-width: 768px) {
+      .input-section {
+        grid-template-columns: 1fr;
+      }
+      textarea {
+        height: 200px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-dark">
-    <div class="container-fluid justify-content-center">
-      <a class="navbar-brand fs-2" href="#">👥 Groepenmaker</a>
-    </div>
-  </nav>
-
-  <main>
-    <div class="card">
-      <div class="row g-4">
-        <div class="col-md-5">
-          <h5>1️⃣ Voeg de namen toe</h5>
-          <p class="text-muted">Eén naam per regel:</p>
-          <textarea id="nameList" placeholder="Bijv. Jan&#10;Sara&#10;Ahmed"></textarea>
+  <div class="wrapper">
+    <h1>Groepenmaker</h1>
+    <div class="input-section">
+      <div>
+        <label class="form-label">Namenlijst</label>
+        <textarea id="nameList" placeholder="Eén naam per regel"></textarea>
+      </div>
+      <div>
+        <label class="form-label">Instellingen</label>
+        <div class="controls mb-3">
+          <select id="options">
+            <option value="people">Personen per groep</option>
+            <option value="groups">Aantal groepen</option>
+          </select>
+          <input type="number" id="quantity" placeholder="Aantal">
         </div>
-
-        <div class="col-md-7">
-          <h5>2️⃣ Kies instellingen</h5>
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <select id="options" class="form-select w-50">
-              <option value="people">Personen per groep</option>
-              <option value="groups">Aantal groepen</option>
-            </select>
-            <input type="number" id="quantity" class="form-control w-25" placeholder="Aantal">
-          </div>
-          <button class="btn btn-success w-100" id="run">Maak groepen</button>
-
-          <hr class="my-4">
-
-          <div id="results"></div>
-        </div>
+        <button id="generate">Maak groepen</button>
       </div>
     </div>
-  </main>
-
-  <footer>
-    <a href="https://github.com/Alicja-Malinowska/Group-Generator" target="_blank">
-      <i class="fab fa-github fa-lg"></i>
-    </a>
-  </footer>
+    <div id="results"></div>
+  </div>
 
   <script>
-    document.getElementById("run").addEventListener("click", generateGroups);
+    document.getElementById('generate').addEventListener('click', generateGroups);
 
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [arr[i], arr[j]] = [arr[j], arr[i]];
       }
-      return array;
+      return arr;
     }
 
     function generateGroups() {
-      const namesInput = document.getElementById("nameList").value.trim();
-      const names = namesInput.split("\n").map(n => n.trim()).filter(Boolean);
-      const mode = document.getElementById("options").value;
-      const quantity = parseInt(document.getElementById("quantity").value);
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
+      const namesInput = document.getElementById('nameList').value.trim();
+      const names = namesInput.split('\n').map(n => n.trim()).filter(Boolean);
+      const mode = document.getElementById('options').value;
+      const quantity = parseInt(document.getElementById('quantity').value);
+      const results = document.getElementById('results');
+      results.innerHTML = '';
 
-      if (names.length === 0 || isNaN(quantity) || quantity <= 0) {
-        resultsDiv.innerHTML = "<p class='text-danger'>⚠️ Voeg geldige namen en een positief aantal in.</p>";
+      if (!names.length || !quantity || quantity <= 0) {
+        results.innerHTML = '<div class="text-danger">Voer geldige namen en aantallen in.</div>';
         return;
       }
 
-      shuffle(names);
+      const lowerNames = names.map(n => n.toLowerCase());
+      const hasTristan = lowerNames.includes('tristan');
+      const hasLily = lowerNames.includes('lily');
+      let mainList = [...names];
+
+      if (hasTristan && hasLily) {
+        mainList = mainList.filter(n => n.toLowerCase() !== 'tristan' && n.toLowerCase() !== 'lily');
+        mainList.push('Tristan & Lily');
+      }
+
+      shuffle(mainList);
       let groups = [];
 
-      if (mode === "people") {
-        for (let i = 0; i < names.length; i += quantity) {
-          groups.push(names.slice(i, i + quantity));
+      if (mode === 'people') {
+        for (let i = 0; i < mainList.length; i += quantity) {
+          groups.push(mainList.slice(i, i + quantity));
         }
       } else {
         groups = Array.from({ length: quantity }, () => []);
-        names.forEach((name, index) => {
-          groups[index % quantity].push(name);
+        mainList.forEach((name, i) => {
+          groups[i % quantity].push(name);
         });
       }
 
       groups.forEach((group, i) => {
-        const div = document.createElement("div");
-        div.classList.add("group");
-        div.innerHTML = `<strong>Groep ${i + 1}</strong><br>${group.join(", ")}`;
-        resultsDiv.appendChild(div);
+        const div = document.createElement('div');
+        div.className = 'group';
+        div.innerHTML = `<div class="group-title">Groep ${i + 1}</div>${group.join(', ')}`;
+        results.appendChild(div);
       });
     }
   </script>
-
 </body>
 </html>
